@@ -51,7 +51,7 @@ defmodule Cctv.Stream do
 
   @impl GenServer
   def handle_call(:stop_streaming, _from, %__MODULE__{recording_pid: recording_pid}) do
-    :ok = :exec.kill(recording_pid, :sigkill)
+    :ok = :exec.stop(recording_pid)
 
     {:reply, :ok, %__MODULE__{}}
   end
