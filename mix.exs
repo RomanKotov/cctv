@@ -14,7 +14,8 @@ defmodule Cctv.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger]
+      extra_applications: [:logger, :erlexec],
+      mod: {Cctv.Application, []}
     ]
   end
 
@@ -22,6 +23,7 @@ defmodule Cctv.MixProject do
   defp deps do
     [
       {:circuits_gpio, "~> 0.4"},
+      {:erlexec, "~> 1.19"}
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
     ]
