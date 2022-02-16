@@ -15,6 +15,10 @@ defmodule Cctv.Stream do
     GenServer.call(__MODULE__, :stop_streaming)
   end
 
+  def recording_name do
+    GenServer.call(__MODULE__, :recording_name)
+  end
+
   @impl GenServer
   def init(_init_arg) do
     {:ok, %__MODULE__{}}
@@ -54,6 +58,10 @@ defmodule Cctv.Stream do
     :ok = :exec.stop(recording_pid)
 
     {:reply, :ok, %__MODULE__{}}
+  end
+
+  def handle_call(:recording_name, _from, %__MODULE__{recording_name: name} = state) do
+    {:reply, name, state}
   end
 
   def recordings_dir do
