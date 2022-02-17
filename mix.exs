@@ -14,7 +14,7 @@ defmodule Cctv.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger, :erlexec],
+      extra_applications: [:logger, :erlexec, :os_mon],
       mod: {Cctv.Application, []}
     ]
   end

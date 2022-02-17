@@ -1,21 +1,16 @@
 # Cctv
 
-**TODO: Add description**
+Very simple home CCTV system.
+It uses Raspberry PI to record video and stream it to YouTube.
+It is work in progress.
 
-## Installation
+## Requirements
+- Raspberry Pi, at least 3
+- df
+- ffmpeg
+- Erlang
+- Elixir
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `cctv` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:cctv, "~> 0.1.0"}
-  ]
-end
-```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/cctv>.
-
+## Environment variables
+- `CCTV_CLEAN_INTERVAL` - Time in milliseconds between cleaning recordings (default "60000")
+- `CCTV_CLEAN_THRESHOLD` - Threshold in percent of disk space. System will not delete old recordings until threshold is reached (default "90").
