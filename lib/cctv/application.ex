@@ -11,6 +11,7 @@ defmodule Cctv.Application do
       # Starts a worker by calling: Cctv.Worker.start_link(arg)
       # {Cctv.Worker, arg}
       {Cctv.Cleaner, []},
+      {Cctv.MotionSensor, []},
       {Cctv.Recorder, []},
       {Cctv.Stream, []},
     ]
