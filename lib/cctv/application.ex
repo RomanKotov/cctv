@@ -10,8 +10,9 @@ defmodule Cctv.Application do
     children = [
       # Starts a worker by calling: Cctv.Worker.start_link(arg)
       # {Cctv.Worker, arg}
+      {Cctv.Cleaner, []},
+      {Cctv.Recorder, []},
       {Cctv.Stream, []},
-      {Cctv.Cleaner, []}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
