@@ -28,5 +28,5 @@ It is work in progress.
 ## Getting started
 - Install or check all the requirements
 - clone the project `git clone https://github.com/RomanKotov/cctv.git`
-- Install project dependencies `mix install`
+- Install project dependencies `mix deps.get`
 - Start the project `iex -S mix`. You can use `CCTV_EMULATE_MOTION_SENSOR=1 iex -S mix` if you want to test everything without motion sensor.
