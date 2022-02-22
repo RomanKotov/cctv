@@ -7,7 +7,7 @@ It is work in progress.
 ## Requirements
 - Raspberry Pi, at least 3
 - df
-- ffmpeg
+- ffmpeg >= 4.4
 - Erlang
 - Elixir
 
@@ -20,6 +20,8 @@ It is work in progress.
 - `CCTV_STREAM_END_DELAY` - Time in milliseconds to keep streaming after the motion stopped (default "60000").
 - `CCTV_MOTION_SENSOR_PIN` - Pin number of the motion sensor input (default "17").
 - `CCTV_EMULATE_MOTION_SENSOR` - Whether to emulate motion sensor. Set 1 if your hardware does not support motion sensor (default "0", or do not emulate it).
+- `CCTV_VIDEO_INPUT_COMMAND` - Set a video input command. (Will use static image by default).
+- `CCTV_STERAM_URL` - Set a video stream url ("rtmp://127.0.0.1:1935/stream" by default).
 
 ## Useful commands
 - `docker run --rm --name nginx-rtmp -p 1935:1935 -p 8080:80 --rm alfg/nginx-rtmp` starts nginx with rtmp support. You can stream into it by `rtmp://your_ip:1935/stream` url.
@@ -30,3 +32,6 @@ It is work in progress.
 - clone the project `git clone https://github.com/RomanKotov/cctv.git`
 - Install project dependencies `mix deps.get`
 - Start the project `iex -S mix`. You can use `CCTV_EMULATE_MOTION_SENSOR=1 iex -S mix` if you want to test everything without motion sensor.
+
+## Video input commands
+- `raspivid -o - -t 0 -w 1280 -h 720 -fps 25 -g 50` - Capture video with `raspivid` util.

@@ -25,5 +25,5 @@ cctv-*.tar
 # Temporary files, for example, from tests.
 /tmp/
 
-/priv/
+/priv/*
 !/priv/.gitkeep
