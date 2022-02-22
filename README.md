@@ -7,7 +7,7 @@ It is work in progress.
 ## Requirements
 - Raspberry Pi, at least 3
 - df
-- ffmpeg >= 4.4
+- ffmpeg >= 4.4 (you can compile ffmpeg by yourself or use static builds [according to the docs](https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu).
 - Erlang
 - Elixir
 
@@ -35,3 +35,6 @@ It is work in progress.
 
 ## Video input commands
 - `raspivid -o - -t 0 -w 1280 -h 720 -fps 25 -g 50` - Capture video with `raspivid` util.
+
+## Video stream urls
+- `rtmp://localhost:1935/stream` - stream to the rtmp server from `Useful commands` section.
