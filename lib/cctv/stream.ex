@@ -32,7 +32,7 @@ defmodule Cctv.Stream do
     {:ok, recording_pid, _group_pid} =
       :exec.run_link(
         "#{video_input()} | #{video_output(recording_path)}",
-        [{:group, 0}, :kill_group]
+        [{:group, 0}, :kill_group, :stderr, :stdout]
       )
 
     {:reply, :ok,
@@ -56,8 +56,15 @@ defmodule Cctv.Stream do
     {:reply, :ok, %__MODULE__{}}
   end
 
+  @impl GenServer
   def handle_call(:recording_name, _from, %__MODULE__{recording_name: name} = state) do
     {:reply, name, state}
+  end
+
+  @impl GenServer
+  def handle_info({stream, _os_pid, data}, state) when stream in [:stdout, :stderr] do
+    IO.inspect(data, label: stream)
+    {:noreply, state}
   end
 
   def recordings_dir do
