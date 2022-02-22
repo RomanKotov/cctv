@@ -49,6 +49,7 @@ defmodule Cctv.MotionSensor do
   @impl GenServer
   def handle_call({:emulate_sensor_value, value}, _from, %__MODULE__{sensor_pin: pin} = state)
       when value in @allowed_sensor_values do
+    stop_application_if_no_sensor_support!()
     send(
       self(),
       {:circuits_gpio, pin, System.monotonic_time(), value}
