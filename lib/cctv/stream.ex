@@ -76,7 +76,7 @@ defmodule Cctv.Stream do
     dummy_input =
       [
         "ffmpeg",
-        "-hide_banner",
+        "-hide_banner -v error",
         "-f lavfi -i testsrc=size=1280x720:rate=25",
         "-vcodec libx264 -x264-params keyint=50 -f h264 -"
       ]
@@ -90,6 +90,7 @@ defmodule Cctv.Stream do
 
     [
       "ffmpeg",
+      "-hide_banner -v error",
       "-re -ar 44100 -ac 2 -acodec pcm_s16le -f s16le -ac 2 -i /dev/zero",
       "-f h264 -i -",
       "-vcodec copy -acodec aac -ab 128k -g 50 -strict experimental -bsf:v setts=ts=N -f flv",
