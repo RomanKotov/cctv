@@ -45,3 +45,11 @@ It is work in progress.
 
 ## Video stream urls
 - `rtmp://localhost:1935/stream` - stream to the rtmp server from `Useful commands` section.
+
+## Daemonizing application
+You can run CCTV application as a daemon. To do it with systemd:
+- `sudo cp priv/cctv.service.template /etc/systemd/system/cctv.service`
+- adjust the file at `/etc/systemd/system/cctv.service`
+- `sudo systemctl daemon reload`
+- `sudo systemctl start cctv.service`
+- `sudo systemctl enable cctv.service` if you want to start it on system start.
