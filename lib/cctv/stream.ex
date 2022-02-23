@@ -98,18 +98,33 @@ defmodule Cctv.Stream do
   end
 
   defp video_output(recording_path) do
-    stream_url = System.get_env("CCTV_STREAM_URL", "rtmp://127.0.0.1:1935/stream")
-
     [
       "ffmpeg",
       "-hide_banner -v error",
       "-re -ar 44100 -ac 2 -acodec pcm_s16le -f s16le -ac 2 -i /dev/zero",
       "-f h264 -i -",
-      "-vcodec copy -acodec aac -ab 128k -g 50 -strict experimental -bsf:v setts=ts=N -f flv",
-      stream_url,
       "-c copy -f h264",
-      recording_path
+      recording_path,
+      stream_params()
     ]
     |> Enum.join(" ")
+  end
+
+  def stream_params do
+    stream_url = System.get_env("CCTV_STREAM_URL", "")
+
+    empty_stream_url = String.trim(stream_url) == ""
+
+    if empty_stream_url do
+      ""
+    else
+      Enum.join(
+        [
+          "-vcodec copy -acodec aac -ab 128k -g 50 -strict experimental -bsf:v setts=ts=N -f flv",
+          stream_url
+        ],
+        " "
+      )
+    end
   end
 end
