@@ -13,12 +13,21 @@ defmodule Cctv.Application do
       {Cctv.Cleaner, []},
       {Cctv.MotionSensor, []},
       {Cctv.Recorder, []},
-      {Cctv.Stream, []},
+      {Cctv.Stream, []}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Cctv.Supervisor]
-    Supervisor.start_link(children, opts)
+    result = Supervisor.start_link(children, opts)
+
+    Cctv.Telegram.send_message("Application started")
+    result
+  end
+
+  @impl true
+  def stop(_state) do
+    Cctv.Telegram.send_message("Application stopped")
+    :ok
   end
 end

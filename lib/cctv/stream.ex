@@ -35,6 +35,11 @@ defmodule Cctv.Stream do
         [{:group, 0}, :kill_group, :stderr, :stdout, :monitor]
       )
 
+
+    "CCTV_TELEGRAM_STREAM_START_MESSAGE"
+    |> System.get_env("Motion detected, starting a stream.")
+    |> Cctv.Telegram.send_message()
+
     {:reply, :ok,
      %__MODULE__{
        recording_name: recording_name,
@@ -53,6 +58,10 @@ defmodule Cctv.Stream do
   def handle_call(:stop_streaming, _from, %__MODULE__{recording_pid: recording_pid}) do
     :ok = :exec.stop(recording_pid)
 
+    "CCTV_TELEGRAM_STREAM_END_MESSAGE"
+    |> System.get_env("Stream has stopped.")
+    |> Cctv.Telegram.send_message()
+
     {:reply, :ok, %__MODULE__{}}
   end
 
@@ -63,7 +72,9 @@ defmodule Cctv.Stream do
 
   @impl GenServer
   def handle_info({stream, _os_pid, data}, state) when stream in [:stdout, :stderr] do
-    IO.inspect(data, label: stream)
+    Cctv.Telegram.send_message(
+      "Got a message about stream [#{inspect(stream)}]: #{inspect(data)}"
+    )
     {:noreply, state}
   end
 
