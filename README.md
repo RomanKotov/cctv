@@ -38,7 +38,11 @@ It is work in progress.
 - Install project dependencies `mix deps.get`
 - Create .env file. You can use `cp .env.example .env` and adjust it.
 - Run `./start.sh` to start an application.
-- Run `./remote.sh` to connect to a running application.
+
+## Options for start.sh
+- `./start.sh` starts an application interactively.
+- `./start.sh daemon` run application in non-interactive mode.
+- `./start.sh daemon-connect` connect to a running daemonized application.
 
 ## Video input commands
 - `raspivid -o - -t 0 -w 1280 -h 720 -fps 25 -g 50` - Capture video with `raspivid` util.
