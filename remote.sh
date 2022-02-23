@@ -5,7 +5,7 @@ cd $PROJECT_FOLDER
 
 if [ -f .env ]
 then
-  export $(cat .env | sed 's/#.*//g' | xargs)
+  . .env
 fi
 
 iex --remsh ${CCTV_SERVER_NAME:-cctv} --sname client-$RANDOM

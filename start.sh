@@ -5,7 +5,7 @@ cd $PROJECT_FOLDER
 
 if [ -f .env ]
 then
-  export $(cat .env | sed 's/#.*//g' | xargs)
+  . .env
 fi
 
 MIX_ENV=prod iex --sname ${CCTV_SERVER_NAME:-cctv} -S mix
