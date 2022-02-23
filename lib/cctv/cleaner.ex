@@ -50,6 +50,7 @@ defmodule Cctv.Cleaner do
       |> Enum.map(fn {filename, _mtime} -> filename end)
 
     for file <- sorted_recordings, cleaning_needed?(recordings_dir) do
+      Cctv.Telegram.send_message("Removing file #{file} to free some space.")
       File.rm!(file)
     end
 
