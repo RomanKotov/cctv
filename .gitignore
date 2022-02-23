@@ -25,5 +25,9 @@ cctv-*.tar
 # Temporary files, for example, from tests.
 /tmp/
 
+# Private data
 /priv/*
 !/priv/.gitkeep
+
+# Environment variables
+.env
