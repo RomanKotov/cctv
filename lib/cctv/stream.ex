@@ -94,7 +94,14 @@ defmodule Cctv.Stream do
       ]
       |> Enum.join(" ")
 
-    System.get_env("CCTV_VIDEO_INPUT_COMMAND", dummy_input)
+    video_input_command = System.get_env("CCTV_VIDEO_INPUT_COMMAND", "")
+    command_is_empty = String.trim(video_input_command) == ""
+
+    if command_is_empty do
+      dummy_input
+    else
+      video_input_command
+    end
   end
 
   defp video_output(recording_path) do
