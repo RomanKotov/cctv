@@ -29,10 +29,15 @@ defmodule Cctv.Cleaner do
           now
 
         stream_name ->
-          recordings_dir
-          |> Path.join(stream_name)
-          |> File.lstat!(time: :universal)
-          |> then(& &1.mtime)
+          stream_file = Path.join(recordings_dir, stream_name)
+
+          if File.exists?(stream_file) do
+            stream_file
+            |> File.lstat!(time: :universal)
+            |> then(& &1.mtime)
+          else
+            now
+          end
       end
 
     sorted_recordings =
