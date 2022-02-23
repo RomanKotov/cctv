@@ -28,6 +28,7 @@ cctv-*.tar
 # Private data
 /priv/*
 !/priv/.gitkeep
+!/priv/cctv.service.template
 
 # Environment variables
 .env

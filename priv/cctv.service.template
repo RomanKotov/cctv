@@ -1,0 +1,13 @@
+[Unit]
+Description=CCTV service
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+User=pi
+Type=simple
+ExecStart=/bin/bash -c "/home/pi/projects/cctv/start.sh"
+Restart=always
+RemainAfterExit=true
+RestartSec=10s
