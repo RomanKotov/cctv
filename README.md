@@ -45,6 +45,7 @@ It is work in progress.
 - `./start.sh daemon-connect` connect to a running daemonized application.
 
 ## Video input commands
+- `ffmpeg -hide_banner -v error -f lavfi -i testsrc=size=1280x720:rate=25 -vcodec libx264 -x264-params keyint=50 -f h264 -` - Generate test video. It is better not to use this on Raspberry pi, as it may eat up all your memory.
 - `raspivid -o - -t 0 -w 1280 -h 720 -fps 25 -g 50` - Capture video with `raspivid` util.
 - `ffmpeg -v 0 -hide_banner -f v4l2 -framerate 25 -video_size 640x480 -i /dev/video0 -f h264 -` - Capture video from connected camera.
 
