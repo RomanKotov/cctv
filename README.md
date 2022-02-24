@@ -46,6 +46,7 @@ It is work in progress.
 
 ## Video input commands
 - `raspivid -o - -t 0 -w 1280 -h 720 -fps 25 -g 50` - Capture video with `raspivid` util.
+- `ffmpeg -v 0 -hide_banner -f v4l2 -framerate 25 -video_size 640x480 -i /dev/video0 -f h264 -` - Capture video from connected camera.
 
 ## Video stream urls
 - `rtmp://localhost:1935/stream` - stream to the rtmp server from `Useful commands` section.
@@ -57,3 +58,4 @@ You can run CCTV application as a daemon. To do it with systemd:
 - `sudo systemctl daemon reload`
 - `sudo systemctl start cctv.service`
 - `sudo systemctl enable cctv.service` if you want to start it on system start.
+- `journalctl -fu cctv.service` show and follow the logs of the service.

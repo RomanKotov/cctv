@@ -21,5 +21,3 @@ case $1 in
     iex -S mix
     ;;
 esac
-
-MIX_ENV=prod iex --sname ${CCTV_SERVER_NAME:-cctv} -S mix
